@@ -7,6 +7,7 @@ import time
 import cv2
 import numpy as np
 from PIL import Image
+import matplotlib.pyplot as plt
 
 from unet import Unet_ONNX, Unet
 
@@ -31,7 +32,8 @@ if __name__ == "__main__":
     #   count、name_classes仅在mode='predict'时有效
     #-------------------------------------------------------------------------#
     count           = False
-    name_classes    = ["background","aeroplane", "bicycle", "bird", "boat", "bottle", "bus", "car", "cat", "chair", "cow", "diningtable", "dog", "horse", "motorbike", "person", "pottedplant", "sheep", "sofa", "train", "tvmonitor"]
+    name_classes = []
+    # name_classes    = ["background","aeroplane", "bicycle", "bird", "boat", "bottle", "bus", "car", "cat", "chair", "cow", "diningtable", "dog", "horse", "motorbike", "person", "pottedplant", "sheep", "sofa", "train", "tvmonitor"]
     # name_classes    = ["background","cat","dog"]
     #----------------------------------------------------------------------------------------------------------#
     #   video_path          用于指定视频的路径，当video_path=0时表示检测摄像头
@@ -97,7 +99,8 @@ if __name__ == "__main__":
                 continue
             else:
                 r_image = unet.detect_image(image, count=count, name_classes=name_classes)
-                r_image.show()
+                # r_image.show()
+                r_image.save("img/result.png")
 
     elif mode == "video":
         capture=cv2.VideoCapture(video_path)

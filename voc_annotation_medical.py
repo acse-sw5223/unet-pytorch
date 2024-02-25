@@ -5,7 +5,7 @@ import random
 #   医药数据集的例子没有验证集
 #----------------------------------------------------------------------#
 trainval_percent    = 1
-train_percent       = 1
+train_percent       = 0.7
 #-------------------------------------------------------#
 #   指向医药数据集所在的文件夹
 #   默认指向根目录下的Medical_Datasets
@@ -31,8 +31,9 @@ if __name__ == "__main__":
     trainval= random.sample(list,tv)  
     train   = random.sample(trainval,tr)  
     
-    print("train and val size",tv)
-    print("traub suze",tr)
+    print("train and val size", tv)
+    print("train size", tr)
+    print("val size", tv-tr)
     ftrainval   = open(os.path.join(saveBasePath,'trainval.txt'), 'w')  
     ftest       = open(os.path.join(saveBasePath,'test.txt'), 'w')  
     ftrain      = open(os.path.join(saveBasePath,'train.txt'), 'w')  
